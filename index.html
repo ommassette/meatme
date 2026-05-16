@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meat Me in Kilimani | Premium Butchery</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8a0303;
+            --dark-crimson: #4a0000;
+            --charcoal: #111111;
+            --matte-black: #0a0a0a;
+            --gold-accent: #c5a880;
+            --cream: #f4f1ea;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--matte-black);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(138, 3, 3, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cream) !important;
+        }
+
+        .navbar-brand span {
+            color: var(--blood-red);
+        }
+
+        .nav-link {
+            color: var(--cream) !important;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--blood-red) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .hero-title span {
+            color: var(--blood-red);
+            display: block;
+        }
+
+        .btn-premium {
+            background-color: var(--blood-red);
+            color: var(--cream);
+            border: 1px solid var(--blood-red);
+            padding: 12px 35px;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.4s ease;
+        }
+
+        .btn-premium:hover {
+            background-color: transparent;
+            color: var(--blood-red);
+            border-color: var(--blood-red);
+            box-shadow: 0 0 15px rgba(138, 3, 3, 0.4);
+        }
+
+        /* Cut Showcase Section */
+        .showcase-section {
+            padding: 100px 0;
+            background-color: var(--charcoal);
+        }
+
+        .section-badge {
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            background-color: var(--matte-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blood-red);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px; /* Square ratio placeholder */
+            background: #1a1a1a;
+        }
+
+        .product-img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-placeholder {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-title {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: var(--gold-accent);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat fixed;
+            border-top: 1px solid rgba(138, 3, 3, 0.2);
+            border-bottom: 1px solid rgba(138, 3, 3, 0.2);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--matte-black);
+            border-top: 2px solid var(--blood-red);
+            padding: 80px 0 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 25px;
+        }
+
+        .footer-heading span {
+            color: var(--blood-red);
+        }
+
+        .footer-link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link-list a {
+            color: rgba(244, 241, 234, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--blood-red);
+        }
+
+        .contact-widget p {
+            color: rgba(244, 241, 234, 0.7);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-widget strong {
+            color: var(--blood-red);
+            margin-right: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: rgba(244, 241, 234, 0.4);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Optimization */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-section {
+                text-align: center;
+            }
+            .footer-heading {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MEAT ME<span>.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thecut.html">The Cuts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ourstory.html">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-10">
+                    <span class="section-badge animate-fade">Kilimani, Nairobi</span>
+                    <h1 class="hero-title mb-4">Meat Me In <span>Killimani</span></h1>
+                    <p class="lead mb-5 text-light" style="font-weight: 300; max-width: 550px;">Experience artisanal butchery at its finest. Hand-selected premium cuts, aged to perfection, tailored for the true connoisseur.</p>
+                    <a href="#" class="btn btn-premium">Explore The Vault</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Featured Showcase -->
+    <section class="showcase-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <span class="section-badge">The Reserve</span>
+                <h2 class="section-title">Signature Selections</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card h-100">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&q=80&w=600" alt="Tomahawk" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Dry-Aged Tomahawk</h3>
+                            <div class="product-price">KES 4,500 / kg</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card h-100">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=600" alt="Ribeye" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Prime Wagyu Ribeye</h3>
+                            <div class="product-price">KES 8,200 / kg</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="product-card h-100">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1734987052573-0fbe611842ae?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lamb" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Lamb Rack</h3>
+                            <div class="product-price">KES 3,800 / kg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Brand Statement -->
+    <section class="experience-section text-center">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <span class="section-badge">Uncompromising Quality</span>
+                    <h2 class="font-serif display-5 mb-4">A Cut Above Restraint</h2>
+                    <p class="text-light mb-0 mx-auto" style="max-width: 600px; font-weight: 300; line-height: 1.8;">
+                        Every piece of meat passing through our doors undergoes rigorous inspection, precision trimming, and elite climate curation to elevate your culinary standards.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Footer Architecture -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-heading">Meat Me<span>.</span></h4>
+                    <p class="text-light" style="font-weight: 300;">An elite boutique culinary butchery house delivering pristine cuts, rich heritage, and tailored gastronomic excellence across Nairobi.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 px-lg-5">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#">The Prime Cuts Portfolio</a></li>
+                        <li><a href="#">Heritage & Craftsmanship</a></li>
+                        <li><a href="#">Private Culinary Events</a></li>
+                        <li><a href="#">Elite Bespoke Orders</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 contact-widget">
+                    <h4 class="footer-heading">The Boutique</h4>
+                    <p><strong>Locate</strong> Kindaruma Road, Kilimani, Nairobi</p>
+                    <p><strong>Hours</strong> Open Everyday: 7:00 AM – 9:00 PM</p>
+                    <p><strong>Hotline</strong> 0742255555</p>
+                </div>
+            </div>
+            <div class="row footer-bottom">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 Meat Me In Kilimani. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    PREMIUM BOUTIQUE QUALITY
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Minimal active nav architecture trigger
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-link.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

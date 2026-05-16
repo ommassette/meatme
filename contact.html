@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Meat Me in Kilimani</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8a0303;
+            --dark-crimson: #4a0000;
+            --charcoal: #111111;
+            --matte-black: #0a0a0a;
+            --gold-accent: #c5a880;
+            --cream: #f4f1ea;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--matte-black);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(138, 3, 3, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cream) !important;
+        }
+
+        .navbar-brand span {
+            color: var(--blood-red);
+        }
+
+        .nav-link {
+            color: var(--cream) !important;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--blood-red) !important;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 0 60px 0;
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 1)), 
+                        url('https://images.unsplash.com/photo-1551028372-f9034a94352f?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            border-bottom: 1px solid rgba(138, 3, 3, 0.2);
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .page-title span {
+            color: var(--blood-red);
+        }
+
+        .section-badge {
+            color: var(--blood-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section Matrix */
+        .contact-section {
+            padding: 90px 0;
+            background-color: var(--charcoal);
+        }
+
+        .contact-card-info {
+            background-color: var(--matte-black);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            height: 100%;
+        }
+
+        .info-block {
+            margin-bottom: 35px;
+        }
+
+        .info-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--blood-red);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .info-detail {
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        /* Premium Form Architectural Controls */
+        .premium-form .form-control {
+            background-color: var(--matte-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+            color: var(--cream);
+            padding: 14px 20px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+        }
+
+        .premium-form .form-control:focus {
+            background-color: var(--matte-black);
+            border-color: var(--blood-red);
+            box-shadow: none;
+            color: var(--cream);
+        }
+
+        .premium-form label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            color: var(--cream);
+            font-weight: 600;
+        }
+
+        .btn-submit-premium {
+            background-color: var(--blood-red);
+            color: var(--cream);
+            border: 1px solid var(--blood-red);
+            padding: 14px 40px;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.4s ease;
+            width: 100%;
+        }
+
+        .btn-submit-premium:hover {
+            background-color: transparent;
+            color: var(--blood-red);
+            border-color: var(--blood-red);
+        }
+
+        /* Map Segment Placeholder */
+        .map-wrapper {
+            border: 1px solid rgba(138, 3, 3, 0.2);
+            background-color: var(--matte-black);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-bg-texture {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.15;
+            object-fit: cover;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--matte-black);
+            border-top: 2px solid var(--blood-red);
+            padding: 80px 0 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 25px;
+        }
+
+        .footer-heading span {
+            color: var(--blood-red);
+        }
+
+        .footer-link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link-list a {
+            color: rgba(244, 241, 234, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--blood-red);
+        }
+
+        .contact-widget p {
+            color: rgba(244, 241, 234, 0.7);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-widget strong {
+            color: var(--blood-red);
+            margin-right: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: rgba(244, 241, 234, 0.4);
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Adaptive Rules */
+        @media (max-width: 991.98px) {
+            .page-title {
+                font-size: 2.8rem;
+            }
+            .contact-card-info {
+                margin-bottom: 40px;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .footer-heading {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MEAT ME<span>.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thecut.html">The Cuts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ourstory.html">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Page Header -->
+    <section class="page-header text-center">
+        <div class="container">
+            <span class="section-badge">Connect</span>
+            <h1 class="page-title mb-2">The <span>Concierge</span></h1>
+            <p class="text-light mx-auto" style="font-weight: 300; font-size: 0.95rem; max-width:500px;">Initiate bespoke commissions, private inquiries, or vault reservations.</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Core Matrix & Inquiries Panel -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Information Architecture Column -->
+                <div class="col-lg-5">
+                    <div class="contact-card-info">
+                        <div class="info-block">
+                            <h3 class="info-label">Boutique Coordinates</h3>
+                            <p class="info-detail text-light">
+                                Kindaruma Road,<br>
+                                Kilimani, Nairobi
+                            </p>
+                        </div>
+                        
+                        <div class="info-block">
+                            <h3 class="info-label">Operational Windows</h3>
+                            <p class="info-detail text-light">
+                                Open Everyday<br>
+                                7:00 AM – 9:00 PM
+                            </p>
+                        </div>
+
+                        <div class="info-block">
+                            <h3 class="info-label">Direct Communication</h3>
+                            <p class="info-detail text-light">
+                                Hotline: 0742255555<br>
+                                Secure: concierge@meatmekilimani.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategic Request Form Panel -->
+                <div class="col-lg-7">
+                    <form class="premium-form row g-4" onsubmit="event.preventDefault();">
+                        <div class="col-md-6">
+                            <label for="clientName">Full Name</label>
+                            <input type="text" class="form-control" id="clientName" required placeholder="Lord/Lady Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="clientEmail">Secure Email</label>
+                            <input type="email" class="form-control" id="clientEmail" required placeholder="name@domain.com">
+                        </div>
+                        <div class="col-12">
+                            <label for="inquiryType">Inquiry Spectrum</label>
+                            <select class="form-select form-control" id="inquiryType">
+                                <option value="reserve">Bespoke Cut Reservation</option>
+                                <option value="event">Private Culinary Provisioning</option>
+                                <option value="corporate">Corporate Wholesale Architecture</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="clientMessage">Detailed Directives</label>
+                            <textarea class="form-control" id="clientMessage" rows="5" required placeholder="Specify execution parameters, marbling demands, or delivery logistics..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-submit-premium">Transmit Instructions</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Section 3: Geolocation Architecture Placeholder Wrapper -->
+            <div class="row mt-5 pt-4">
+                <div class="col-12">
+                    <div class="map-wrapper">
+                        <img src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&q=80&w=1200" alt="Map Texture Background" class="map-bg-texture">
+                        <div class="text-center position-relative" style="z-index: 2;">
+                            <span class="section-badge mb-1">Interactive Grid</span>
+                            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem;">Kindaruma Road Presence Room</h4>
+                            <p class="small text-light mb-0" style="font-weight: 300;">GPS Vector Coordinates: Kilimani Matrix, Nairobi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Shared Footer Architecture -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-heading">Meat Me<span>.</span></h4>
+                    <p class="text-light" style="font-weight: 300;">An elite boutique culinary butchery house delivering pristine cuts, rich heritage, and tailored gastronomic excellence across Nairobi.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 px-lg-5">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="the-cuts.html">The Prime Cuts Portfolio</a></li>
+                        <li><a href="our-story.html">Heritage & Craftsmanship</a></li>
+                        <li><a href="#">Private Culinary Events</a></li>
+                        <li><a href="#">Elite Bespoke Orders</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 contact-widget">
+                    <h4 class="footer-heading">The Boutique</h4>
+                    <p><strong>Locate</strong> Kindaruma Road, Kilimani, Nairobi</p>
+                    <p><strong>Hours</strong> Open Everyday: 7:00 AM – 9:00 PM</p>
+                    <p><strong>Hotline</strong> 0742255555</p>
+                </div>
+            </div>
+            <div class="row footer-bottom">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 Meat Me In Kilimani. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    PREMIUM BOUTIQUE QUALITY
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

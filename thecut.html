@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cuts | Meat Me in Kilimani</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood-red: #8a0303;
+            --dark-crimson: #4a0000;
+            --charcoal: #111111;
+            --matte-black: #0a0a0a;
+            --gold-accent: #c5a880;
+            --cream: #f4f1ea;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--matte-black);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 1px;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(138, 3, 3, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--cream) !important;
+        }
+
+        .navbar-brand span {
+            color: var(--blood-red);
+        }
+
+        .nav-link {
+            color: var(--cream) !important;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--blood-red) !important;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 120px 0 60px 0;
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 1)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1920') center/cover no-repeat;
+            border-bottom: 1px solid rgba(138, 3, 3, 0.2);
+            /* text-center; */
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .page-title span {
+            color: var(--blood-red);
+        }
+
+        /* Filter Controls */
+        .filter-btn {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--blood-red);
+            border-color: var(--blood-red);
+            color: var(--cream);
+        }
+
+        /* Grid Vault Section */
+        .vault-section {
+            padding: 60px 0 100px 0;
+            background-color: var(--charcoal);
+        }
+
+        .product-card {
+            background-color: var(--matte-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--blood-red);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-top: 85px; 
+            background: #1a1a1a;
+        }
+
+        .product-img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-placeholder {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--blood-red);
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            font-size: 0.85rem;
+            color: rgba(244, 241, 234, 0.6);
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
+        }
+
+        .product-price {
+            color: var(--gold-accent);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .btn-order-spec {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--blood-red);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-order-spec:hover {
+            background-color: var(--blood-red);
+            color: var(--cream);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--matte-black);
+            border-top: 2px solid var(--blood-red);
+            padding: 80px 0 30px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 25px;
+        }
+
+        .footer-heading span {
+            color: var(--blood-red);
+        }
+
+        .footer-link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-link-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-link-list a {
+            color: rgba(244, 241, 234, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link-list a:hover {
+            color: var(--blood-red);
+        }
+
+        .contact-widget p {
+            color: rgba(244, 241, 234, 0.7);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-widget strong {
+            color: var(--blood-red);
+            margin-right: 8px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-bottom {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.8rem;
+            color: rgba(244, 241, 234, 0.4);
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Modifications */
+        @media (max-width: 767.98px) {
+            .page-title {
+                font-size: 2.6rem;
+            }
+            .filter-btn {
+                padding: 6px 16px;
+                font-size: 0.75rem;
+                width: 45%;
+            }
+            .footer-heading {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MEAT ME<span>.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="thecut.html">The Cuts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ourstory.html">Our Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Page Header Title -->
+    <section class="page-header text-center">
+        <div class="container">
+            <h1 class="page-title mb-2">The Prime <span>Portfolio</span></h1>
+            <p class="text-light max-width-600 mx-auto" style="font-weight: 300; font-size: 0.95rem; max-width:500px;">Sourced meticulously, dry-aged professionally. Browse our elite selection of premium meats.</p>
+        </div>
+    </section>
+
+    <!-- Section 2: Portfolio Matrix & Filtering -->
+    <section class="vault-section">
+        <div class="container">
+            
+            <!-- Dynamic Category Filter Toggles -->
+            <div class="d-flex flex-wrap justify-content-center mb-5" id="filter-wrapper">
+                <button class="filter-btn active" data-category="all">All Architecture</button>
+                <button class="filter-btn" data-category="beef">Prime Beef</button>
+                <button class="filter-btn" data-category="lamb">Bespoke Lamb</button>
+                <button class="filter-btn" data-category="poultry">Premium Poultry</button>
+            </div>
+
+            <!-- Product Display Grid Architecture -->
+            <div class="row g-4" id="cuts-grid">
+                
+                <!-- Card 1 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="beef">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?auto=format&fit=crop&q=80&w=600" alt="Tomahawk" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">28-Day Dry Aged</span>
+                            <h3 class="product-title">Dry-Aged Tomahawk</h3>
+                            <p class="product-description">An exceptional rich marbled steak left on the bone for maximal deep flavor extraction during culinary sear profiles.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 4,500 / kg</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="beef">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=600" alt="Ribeye" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">A5 Certified Origin</span>
+                            <h3 class="product-title">Prime Wagyu Ribeye</h3>
+                            <p class="product-description">Unprecedented dense marbling composition yielding buttery structural breakdown configurations under standard grill applications.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 8,200 / kg</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="lamb">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1734987052573-0fbe611842ae?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Lamb" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">French Trimmed</span>
+                            <h3 class="product-title">Premium Lamb Rack</h3>
+                            <p class="product-description">Delicately tender pasture-raised cuts pasture-trimmed flawlessly to offer high-caliber roasting capabilities.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 3,800 / kg</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="beef">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600" alt="T-Bone" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">Gourmet Standard</span>
+                            <h3 class="product-title">Prime T-Bone Steak</h3>
+                            <p class="product-description">Giving you the exact balance of tender tenderloin strip and robust, full-flavored sirloin textures simultaneously.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 3,900 / kg</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="lamb">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&q=80&w=600" alt="Lamb Chops" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">Artisanal Cut</span>
+                            <h3 class="product-title">Heritage Lamb Chops</h3>
+                            <p class="product-description">Thickly cut, marinating ready portions optimal for swift open flame searing operations.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 2,900 / kg</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="col-lg-4 col-md-6 cut-item" data-type="poultry">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&q=80&w=600" alt="Poultry" class="product-img-placeholder">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-badge">Organic Free-Range</span>
+                            <h3 class="product-title">Spiced Spatchcock</h3>
+                            <p class="product-description">Infused gracefully with house signature organic rub formulations, prepared for immediate heat execution.</p>
+                            <div class="product-meta">
+                                <div class="product-price">KES 2,400 / pc</div>
+                                <button class="btn btn-order-spec">Reserve</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Shared Footer Architecture -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="footer-heading">Meat Me<span>.</span></h4>
+                    <p class="text-light" style="font-weight: 300;">An elite boutique culinary butchery house delivering pristine cuts, rich heritage, and tailored gastronomic excellence across Nairobi.</p>
+                </div>
+                <div class="col-lg-4 col-md-6 px-lg-5">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#">The Prime Cuts Portfolio</a></li>
+                        <li><a href="#">Heritage & Craftsmanship</a></li>
+                        <li><a href="#">Private Culinary Events</a></li>
+                        <li><a href="#">Elite Bespoke Orders</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 contact-widget">
+                    <h4 class="footer-heading">The Boutique</h4>
+                    <p><strong>Locate</strong> Kindaruma Road, Kilimani, Nairobi</p>
+                    <p><strong>Hours</strong> Open Everyday: 7:00 AM – 9:00 PM</p>
+                    <p><strong>Hotline</strong> 0742255555</p>
+                </div>
+            </div>
+            <div class="row footer-bottom">
+                <div class="col-md-6 text-center text-md-start">
+                    &copy; 2026 Meat Me In Kilimani. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-2 mt-md-0">
+                    PREMIUM BOUTIQUE QUALITY
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Minimal Filtering logic architecture
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cutItems = document.querySelectorAll('.cut-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-category');
+                
+                cutItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-type') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
